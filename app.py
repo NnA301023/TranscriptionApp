@@ -15,7 +15,7 @@ bar = st.progress(0)
 
 
 # global varible
-with open("stopwords pandemic.txt", "r") as f:
+with open("static/corpus/stopwords pandemic.txt", "r") as f:
      data = f.read()
      must_exist_stopwords = data.split("\n")
      f.close()
@@ -289,7 +289,7 @@ def run_inference():
                 st.pyplot(wordcloud_visual)
 
                 # Download Stopwords
-                with open("statis/corpus/stopwords pandemic.txt", "rb") as file_stopword:
+                with open("static/corpus/stopwords pandemic.txt", "rb") as file_stopword:
 
                     stopwords_button = st.download_button(
                         label = "Download Stopwords", 
