@@ -110,14 +110,15 @@ def transcribe_yt():
 
     # 8. Save transcribed text to file
 
-    file = file.split(".")[0]
+    # file = file.split(".")[0]
+    file = "transcription"
 
     # Save as TXT file
     yt_txt = open(f'static/text/{file}.txt', 'w')
     yt_txt.write(transcript_output_response.json()["text"])
     yt_txt.close()
 
-    filename = f'static/transcription.zip'
+    filename = f'static/{file}.zip'
     zip_file = ZipFile(filename, 'w')
     zip_file.write(f'static/text/{file}.txt')
     zip_file.close()
