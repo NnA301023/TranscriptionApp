@@ -242,13 +242,23 @@ def run_inference():
             try:
                 # filename as subheader
                 st.info(URL)
-                fname = URL.split(".")[0].split("\\")[1]
-                st.subheader(fname)
+                try:
+                    fname = URL.split(".")[0].split("\\")[1]
+                    st.subheader(fname)
 
-                # text preprocessing
-                st.subheader("Text Preprocessing")
-                data_text, cleaned_text = preprocess_text(data)
-                st.dataframe(data_text)
+                    # text preprocessing
+                    st.subheader("Text Preprocessing")
+                    data_text, cleaned_text = preprocess_text(data)
+                    st.dataframe(data_text)
+                
+                except Exception as E:
+                    fname = URL.split(".")[0].split("/")[-1]
+                    st.subheader(fname)
+
+                    # text preprocessing
+                    st.subheader("Text Preprocessing")
+                    data_text, cleaned_text = preprocess_text(data)
+                    st.dataframe(data_text)
             
             except Exception as E:
                 st.error(E)
