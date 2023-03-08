@@ -114,9 +114,12 @@ def transcribe_yt():
     file = "transcription"
 
     # Save as TXT file
-    yt_txt = open(f'static/text/{file}.txt', 'w')
-    yt_txt.write(transcript_output_response.json()["text"])
-    yt_txt.close()
+    # yt_txt = open(f'static/text/{file}.txt', 'w')
+    # yt_txt.write(transcript_output_response.json()["text"])
+    # yt_txt.close()
+    f = open(f'static/text/{file}.txt', 'w')
+    f.write(transcript_output_response.json()["text"])
+    f.close()
 
     filename = f'static/{file}.zip'
     zip_file = ZipFile(filename, 'w')
