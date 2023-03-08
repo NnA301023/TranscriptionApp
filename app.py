@@ -117,16 +117,12 @@ def transcribe_yt():
     yt_txt.write(transcript_output_response.json()["text"])
     yt_txt.close()
 
-    # Save as SRT file
-    # srt_endpoint = endpoint + "/srt"
-    # srt_response = requests.get(srt_endpoint, headers=headers)
-    # with open("static//yt.srt", "w") as _file:
-    #     _file.write(srt_response.text)
-    
-    zip_file = ZipFile(f'static/{file}.zip', 'w')
+    filename = f'static/transcription.zip'
+    zip_file = ZipFile(filename, 'w')
     zip_file.write(f'static/text/{file}.txt')
-    # zip_file.write('static//yt.srt')
     zip_file.close()
+
+    return filename
 
 def preprocess_text(text):
     
@@ -216,13 +212,13 @@ def run_inference():
         # Run custom functions if URL is entered 
         if submit_button:
             get_yt(URL)
-            transcribe_yt()
+            filename = transcribe_yt()
 
-            with open("transcription.zip", "rb") as zip_download:
+            with open(filename, "rb") as zip_download:
                 btn = st.download_button(
                     label="Download ZIP",
                     data=zip_download,
-                    file_name="transcription.zip",
+                    file_name=filename,
                     mime="application/zip"
                 )
 
@@ -263,17 +259,20 @@ def run_inference():
                 temp_list  = []
 
                 for word in cleaned_text:
-                    if iteration > 10:
+                    if iteration > 5:
                         final_text.append(" ".join(temp_list))
                         iteration = 0
                         temp_list = []
-                    elif iteration < 10:
+                    elif iteration < 5:
                         temp_list.append(word)
                         iteration += 1
                     else:
                         final_text.append(" ".join(temp_list))
                         iteration = 0
                         temp_list = []
+
+                # print(cleaned_text)
+                # print(final_text)
 
                 # TF-IDF algorithm
                 st.subheader("TF-IDF Weighting")
