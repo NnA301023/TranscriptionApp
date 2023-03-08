@@ -241,7 +241,9 @@ def run_inference():
 
             try:
                 # filename as subheader
-                st.subheader(URL.split(".")[0].split("\\")[1])
+                st.info(URL)
+                fname = URL.split(".")[0].split("\\")[1]
+                st.subheader(fname)
 
                 # text preprocessing
                 st.subheader("Text Preprocessing")
@@ -270,9 +272,6 @@ def run_inference():
                         final_text.append(" ".join(temp_list))
                         iteration = 0
                         temp_list = []
-
-                # print(cleaned_text)
-                # print(final_text)
 
                 # TF-IDF algorithm
                 st.subheader("TF-IDF Weighting")
