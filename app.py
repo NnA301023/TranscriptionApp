@@ -292,7 +292,8 @@ def run_inference():
                 result_weight = vectorizer.fit_transform(final_text)
                 text_names, weights = vectorizer.get_feature_names(), result_weight.toarray()
                 data_weights = pd.DataFrame.from_records(weights)
-                data_weights = data_weights.set_axis(text_names, axis = 1, inplace = False)
+                # data_weights = data_weights.set_axis(text_names, axis = 1, inplace = False)
+                data_weights = data_weights.set_axis(text_names, axis = 1)
                 st.dataframe(data_weights)
 
                 # WordCloud
