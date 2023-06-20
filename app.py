@@ -29,7 +29,7 @@ api_key = "53dde355832942d78dace4de938bd86f"
 
 # 2. Retrieving audio file from YouTube video
 def get_yt(URL):
-    video = YouTube(URL)
+    video = YouTube(URL, use_oauth=True, allow_oauth_cache=True)
     yt = video.streams.get_audio_only()
     yt.download(output_path = "static/video")
 
