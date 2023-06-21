@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # External File
-*.mp4
+# *.mp4
