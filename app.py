@@ -36,6 +36,8 @@ def get_yt(URL):
     #st.info('2. Audio file has been retrieved from YouTube video')
     bar.progress(10)
     st.success(yt.get_file_path())
+    st.success(os.path.isfile(os.path.join("static/video", yt.get_file_path().split("\\")[-1])))
+    
     return yt.get_file_path().split("\\")[-1]
 
 # 3. Upload YouTube audio file to AssemblyAI
