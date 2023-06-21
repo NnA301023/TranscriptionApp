@@ -317,4 +317,11 @@ def run_inference():
 if __name__ == "__main__":
 
     current_dir = "static/video"
+
+    for (root,dirs,files) in os.walk('.', topdown=True):
+        st.success(root)
+        st.success(dirs)
+        st.success(files)
+        st.success('--------------------------------')
+
     run_inference()
