@@ -315,9 +315,10 @@ def run_inference():
 
 if __name__ == "__main__":
 
-    current_dir = "static/video"
+    current_dir = "/static/video"
 
     st.success(os.listdir())
+    st.success(os.listdir('static'))
     st.success(os.listdir(current_dir))
 
     run_inference()
