@@ -110,8 +110,8 @@ def transcribe_yt():
 
     # 8. Save transcribed text to file
 
-    # file = file.split(".")[0]
-    file = "transcription"
+    file = file.split(".")[0]
+    # file = "transcription"
 
     # Save as TXT file
     # yt_txt = open(f'static/text/{file}.txt', 'w')
