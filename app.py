@@ -41,8 +41,6 @@ def get_yt(URL):
 def transcribe_yt(file_target: str):
 
     current_dir = "static/video"
-
-    st.success(os.listdir(current_dir))
     for file in os.listdir(current_dir)[::-1]:
         if file.endswith(".mp4") and file == file_target:
             mp4_file = os.path.join(current_dir, file)
@@ -316,4 +314,10 @@ def run_inference():
                 st.error(E)
 
 if __name__ == "__main__":
+
+    current_dir = "static/video"
+
+    st.success(os.listdir())
+    st.success(os.listdir(current_dir))
+
     run_inference()
