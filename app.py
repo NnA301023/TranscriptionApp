@@ -35,16 +35,17 @@ def get_yt(URL):
 
     #st.info('2. Audio file has been retrieved from YouTube video')
     bar.progress(10)
+    return yt.get_file_path().split("\\")[-1]
 
 # 3. Upload YouTube audio file to AssemblyAI
-def transcribe_yt():
+def transcribe_yt(file_target: str):
 
     current_dir = "static/video"
 
     for file in os.listdir(current_dir)[::-1]:
-        if file.endswith(".mp4"):
+        if file.endswith(".mp4") and file == file_target:
             mp4_file = os.path.join(current_dir, file)
-            #print(mp4_file)
+            # print(mp4_file)
     filename = mp4_file
     bar.progress(20)
 
@@ -109,8 +110,7 @@ def transcribe_yt():
     st.success(transcript_output_response.json()["text"])
 
     # 8. Save transcribed text to file
-
-    file = file.split(".")[0]
+    file = filename.split("\\")[-1].split(".")[0]
     # file = "transcription"
 
     # Save as TXT file
@@ -215,8 +215,8 @@ def run_inference():
 
         # Run custom functions if URL is entered 
         if submit_button:
-            get_yt(URL)
-            filename = transcribe_yt()
+            file_path = get_yt(URL)
+            filename = transcribe_yt(file_path)
 
             with open(filename, "rb") as zip_download:
                 btn = st.download_button(
